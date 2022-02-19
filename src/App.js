@@ -1,27 +1,28 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 
+import CreateRecipe from './components/CreateRecipe';
+import ShowRecipeList from './components/ShowRecipeList';
+import ShowRecipeDetails from './components/ShowRecipeDetails';
+import UpdateRecipeInfo from './components/UpdateRecipeInfo';
 
-// *NOTE: WE WILL USE AXIOS FOR HTTP CLIENT (to make API requests for the front end)*
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div>
+          <Routes>
+            <Route path='/create-recipe' element={<CreateRecipe/>} />
+            <Route exact path='/' element={<ShowRecipeList/>} />
+            <Route path='/edit-recipe/:id' element={UpdateRecipeInfo} />
+            <Route path='/show-recipe/:id' element={ShowRecipeDetails} />
+          </Routes>  
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
+
