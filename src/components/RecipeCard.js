@@ -9,7 +9,7 @@ const RecipeCard = (props) => {
         <div className="card-container">
             <img src="https://commapress.co.uk/books/the-book-of-cairo/cairo-provisional-v3/image%2Fspan3" alt="" />
             <div className="desc">
-                <h3>{recipe.name}</h3>
+                <Link to={`/show-recipe/${recipe._id}`}> { recipe.name } </Link>
                 <p>{recipe.author}</p>
             </div>
         </div>
@@ -20,6 +20,3 @@ const RecipeCard = (props) => {
 export default RecipeCard;
 
 
-// <Link to={`/show-book/${book._id}`}>
-//                         { recipe.title }
-//                     </Link>
