@@ -7,7 +7,7 @@ const RecipeCard = (props) => {
 
     return(
         <div className="card-container">
-            <img src={recipe.imageURL} alt="Recipe Image" width="250"/>
+            <img src={recipe.imageURL} alt="Recipe Image" style={{height: "50%", width: "100%", objectFit: "cover"}}/>
             <div className="desc">
                 <Link to={`/show-recipe/${recipe._id}`}> { recipe.name } </Link>
                 <p>{recipe.author}</p>
