@@ -97,7 +97,7 @@ class CreateRecipe extends Component {
 
                 <div className='form-group'>
                   <input
-                    type='date'
+                    type='text'
                     placeholder='Image URL'
                     name='imageURL'
                     className='form-control'

@@ -59,7 +59,6 @@
   color: white;
 }
 
-
 /* BookList Styles */
 .list {
   display: grid;
@@ -71,7 +70,7 @@
 
 .card-container {
   width: 250px;
-  border: 1px solid rgba(0,0,.125);
+  border: 1px solid rgba(0, 0, 0.125);
   margin: 0 auto;
   border-radius: 5px;
   overflow: hidden;
@@ -87,7 +86,8 @@
   font-weight: 400;
 }
 
-.desc h3, p {
+.desc h3,
+p {
   font-weight: 300;
 }
 

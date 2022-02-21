@@ -37,6 +37,7 @@ class ShowRecipeList extends Component {
       recipeList = recipes.map((recipe, k) =>
         <RecipeCard recipe={recipe} key={k} />
       );
+      console.log(typeof(recipes));
     }
 
     return (

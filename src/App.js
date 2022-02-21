@@ -15,8 +15,8 @@ class App extends Component {
           <Routes>
             <Route path='/create-recipe' element={<CreateRecipe/>} />
             <Route exact path='/' element={<ShowRecipeList/>} />
-            <Route path='/edit-recipe/:id' element={UpdateRecipeInfo} />
-            <Route path='/show-recipe/:id' element={ShowRecipeDetails} />
+            <Route path='/edit-recipe/:id' element={<UpdateRecipeInfo/>} />
+            <Route path='/show-recipe/:id' element={<ShowRecipeDetails/>} />
           </Routes>  
         </div>
       </Router>

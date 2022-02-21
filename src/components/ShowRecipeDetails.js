@@ -2,23 +2,32 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
+import { useParams } from "react-router-dom";
 
 class ShowRecipeDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipe: {}
+      recipe: {},
+      ingredients: [],
+      steps: [],
+      timers: []
     };
   }
 
   componentDidMount() {
-    // console.log("Print id: " + this.props.match.params.id);
+    
+    const { id } = this.props.params;
+    console.log("Print id: " + id);
     axios
-      .get('http://localhost:8082/api/recipes/'+this.props.match.params.id)
+      .get('http://localhost:8082/api/' + id)
       .then(res => {
         // console.log("Print-showBookDetails-API-response: " + res.data);
         this.setState({
-          recipe: res.data
+          recipe: res.data,
+          ingredients: res.data.ingredients,
+          steps: res.data.steps,
+          timers: res.data.timers
         })
       })
       .catch(err => {
@@ -39,29 +48,66 @@ class ShowRecipeDetails extends Component {
 
 
   render() {
-
-    const recipe = this.state.recipe;
+    
+    var recipe = this.state.recipe;
+    var ingredients = this.state.ingredients;
+    var stepsPrint = []
+      for(var i = 0; i < this.state.steps.length; i++){
+        if(this.state.timers[i] == 0){
+          stepsPrint.push(this.state.steps[i])
+        } else{
+          var temp = this.state.steps[i] + " (" + this.state.timers[i] + " minutes)"
+          stepsPrint.push(temp)
+        }
+      }
+    console.log(ingredients[0]);
+    // var ingredientList = recipe.ingredients;
+    // var ingredientList = recipe.ingredients.map((ingredient, k) =>
+    //       <tr>ingredient</tr>
+    //   );
     let RecipeItem = <div>
       <table className="table table-hover table-dark">
-        {/* <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead> */}
         <tbody>
           <tr>
-            <th scope="row">1</th>
+            <th scope="row"></th>
             <td>Name</td>
             <td>{ recipe.name }</td>
           </tr>
           <tr>
-            <th scope="row">2</th>
+            <th scope="row"></th>
             <td>Author</td>
             <td>{ recipe.author }</td>
           </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>Image URL</td>
+            <td>{ recipe.imageURL }</td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>Ingredients</td>
+            <td>
+              <div>
+              {this.state.ingredients.map((ingredient) => (
+                <p key={ingredient.name}>{ingredient.name} ({ingredient.quantity})</p>
+              ))}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>Steps</td>
+            <td>
+              <div>
+              <ol>
+                {stepsPrint.map((step) => (
+                  <li>{step}</li>
+                ))}
+              </ol>
+              </div>
+            </td>
+          </tr>
+          
           
         </tbody>
       </table>
@@ -113,26 +159,11 @@ class ShowRecipeDetails extends Component {
   }
 }
 
-export default ShowRecipeDetails;
+export default (props) => (
+  <ShowRecipeDetails
+    {...props}
+    params={useParams()}
+  />
+);
 
 
-/* <tr>
-            <th scope="row">3</th>
-            <td>ISBN</td>
-            <td>{ book.isbn }</td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>Publisher</td>
-            <td>{ book.publisher }</td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>Published Date</td>
-            <td>{ book.published_date }</td>
-          </tr>
-          <tr>
-            <th scope="row">6</th>
-            <td>Description</td>
-            <td>{ book.description }</td>
-          </tr> */
