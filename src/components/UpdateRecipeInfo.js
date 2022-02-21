@@ -41,11 +41,18 @@ class UpdateRecipeInfo extends Component {
   };
 
   onChange = e => {
+    console.log(e.target.name)
     this.setState({ [e.target.name]: e.target.value });
   };
 
   onSubmit = e => {
+    console.log(this.state.steps[6])
+    console.log(this.state.name)
     e.preventDefault();
+    // var ingredientsTotal = []
+    // for(var i = 0; i < this.state.ingredients.length; i++){
+
+    // }
     const { id } = this.props.params;
     const data = {
       name: this.state.name,
@@ -70,7 +77,7 @@ class UpdateRecipeInfo extends Component {
 
 
   render() {
-    //var ingredients = 
+    var ingredientIndex = 0
     return (
       <div className="UpdateRecipeInfo">
         <div className="container">
@@ -129,15 +136,21 @@ class UpdateRecipeInfo extends Component {
 
             <div className='form-group'>
             <label htmlFor="ingredients">Ingredients</label>
-              {this.state.ingredients.map((ingredient)=>(
+              {this.state.ingredients.map((ingredient, index)=>(
                 <div class="form-inline">
                   <input
                   type='text'
                   placeholder='Ingredient'
-                  name='ingredient'
+                  name="name"
                   className='form-control'
                   defaultValue={ingredient.name}
-                  onChange={this.onChange}
+                  onChange={(e)=>{
+                    console.log(e.target.name)
+                    // create shallow copy of ingredients, modify name of ingredient in question, then put it back
+                    var ingredientsTemp = [...this.state.ingredients]
+                    ingredientsTemp[index].name = e.target.value
+                    this.setState({ingredientsTemp});
+                  }}
                   
                   />
                   <input
@@ -146,7 +159,13 @@ class UpdateRecipeInfo extends Component {
                     name='quantity'
                     className='form-control'
                     defaultValue={ingredient.quantity}
-                    onChange={this.onChange}
+                    onChange={(e)=>{
+                      console.log(e.target.name)
+                      // create shallow copy of ingredients, modify name of ingredient in question, then put it back
+                      var ingredientsTemp = [...this.state.ingredients]
+                      ingredientsTemp[index].quantity = e.target.value
+                      this.setState({ingredientsTemp});
+                    }}
                   />
                 </div>
                 
@@ -156,7 +175,7 @@ class UpdateRecipeInfo extends Component {
             <div className='form-group'>
             <label htmlFor="steps">Steps</label>
               <ol>
-                {this.state.steps.map((step)=>(
+                {this.state.steps.map((step, index)=>(
                     <li>
                       <input
                         type='text'
@@ -164,7 +183,13 @@ class UpdateRecipeInfo extends Component {
                         name='step'
                         className='form-control'
                         defaultValue={step}
-                        onChange={this.onChange}
+                        onChange={(e)=>{
+                          console.log(e.target.name)
+                          // create shallow copy of steps, modify name of step in question, then put it back
+                          var stepsTemp = [...this.state.steps]
+                          stepsTemp[index] = e.target.value
+                          this.setState({steps:stepsTemp});
+                        }}
                       />
                     </li>
                   ))}
