@@ -46,7 +46,7 @@ class UpdateRecipeInfo extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-
+    const { id } = this.props.params;
     const data = {
       name: this.state.name,
       author: this.state.author,
@@ -58,9 +58,10 @@ class UpdateRecipeInfo extends Component {
     };
 
     axios
-      .put('http://localhost:8082/api/'+this.props.match.params.id, data)
+      .put('http://localhost:8082/api/'+id, data)
       .then(res => {
-        this.props.history.push('/show-recipe/'+this.props.match.params.id);
+        // this.props.history.push('/');
+        alert("Recipe Successfully Updated");
       })
       .catch(err => {
         console.log("Error in UpdateRecipeInfo!");

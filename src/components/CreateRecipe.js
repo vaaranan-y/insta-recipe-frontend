@@ -113,7 +113,7 @@ class CreateRecipe extends Component {
                     name='originalURL'
                     className='form-control'
                     value={this.state.originalURL}
-                    onChange={this.onChange}
+                    onChange={this.value}
                   />
                 </div>
 
