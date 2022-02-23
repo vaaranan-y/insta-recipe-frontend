@@ -78,6 +78,7 @@ class UpdateRecipeInfo extends Component {
 
   render() {
     var ingredientIndex = 0
+    
     return (
       <div className="UpdateRecipeInfo">
         <div className="container">
@@ -136,6 +137,15 @@ class UpdateRecipeInfo extends Component {
 
             <div className='form-group'>
             <label htmlFor="ingredients">Ingredients</label>
+            <div class="btn-group" style={{padding: "25px"}}>
+              <a href="#ingredientsSection" class="btn btn-danger minusStep"onClick={() => {
+                this.state.ingredients.pop()
+              }}>-</a>
+              <a href="#ingredientsSection" class="btn btn-success addStep" onClick={() => {
+                var ingredientStr = {"quantity": "0", "name": "", "type": "Unknown"}
+                this.state.ingredients.push(ingredientStr)
+              }}>+</a>
+            </div>
               {this.state.ingredients.map((ingredient, index)=>(
                 <div class="form-inline">
                   <input
@@ -173,7 +183,18 @@ class UpdateRecipeInfo extends Component {
             </div>
 
             <div className='form-group'>
-            <label htmlFor="steps">Steps</label>
+              <label htmlFor="steps" id="stepsSection">Steps</label>
+              
+              <div class="btn-group" style={{padding: "25px"}}>
+                <a href="#stepsSection" class="btn btn-danger minusStep"onClick={() => {
+                  this.state.steps.pop()
+                }}>-</a>
+                <a href="#stepsSection" class="btn btn-success addStep" onClick={() => {
+                  var stepStr = ""
+                  this.state.steps.push(stepStr)
+                }}>+</a>
+              </div>
+
               <ol>
                 {this.state.steps.map((step, index)=>(
                     <li>

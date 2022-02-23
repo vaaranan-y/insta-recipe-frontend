@@ -53,7 +53,7 @@ class ShowRecipeDetails extends Component {
     var ingredients = this.state.ingredients;
     var stepsPrint = []
       for(var i = 0; i < this.state.steps.length; i++){
-        if(this.state.timers[i] == 0){
+        if(this.state.timers[i] == 0 || !(this.state.timers[i])){
           stepsPrint.push(this.state.steps[i])
         } else{
           var temp = this.state.steps[i] + " (" + this.state.timers[i] + " minutes)"
