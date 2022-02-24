@@ -37,8 +37,9 @@ class ShowRecipeDetails extends Component {
 
   onDeleteClick (id) {
     axios
-      .delete('http://localhost:8082/api/recipes/'+id)
+      .delete('http://localhost:8082/api/'+id)
       .then(res => {
+        alert("Recipe Deleted");
         this.props.history.push("/");
       })
       .catch(err => {

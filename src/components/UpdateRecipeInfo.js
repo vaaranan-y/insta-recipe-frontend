@@ -46,7 +46,7 @@ class UpdateRecipeInfo extends Component {
   };
 
   onSubmit = e => {
-    console.log(this.state.steps[6])
+    console.log(this.state.steps)
     console.log(this.state.name)
     e.preventDefault();
     // var ingredientsTotal = []
@@ -136,16 +136,17 @@ class UpdateRecipeInfo extends Component {
             </div>
 
             <div className='form-group'>
-            <label htmlFor="ingredients">Ingredients</label>
-            <div class="btn-group" style={{padding: "25px"}}>
-              <a href="#ingredientsSection" class="btn btn-danger minusStep"onClick={() => {
-                this.state.ingredients.pop()
-              }}>-</a>
-              <a href="#ingredientsSection" class="btn btn-success addStep" onClick={() => {
-                var ingredientStr = {"quantity": "0", "name": "", "type": "Unknown"}
-                this.state.ingredients.push(ingredientStr)
-              }}>+</a>
-            </div>
+              <label htmlFor="ingredients">Ingredients</label>
+              <div class="btn-group" style={{padding: "25px"}}>
+                <a href="#ingredientsSection" class="btn btn-danger minusStep"onClick={() => {
+                  this.state.ingredients.pop()
+                }}>-</a>
+                <a href="#ingredientsSection" class="btn btn-success addStep" onClick={() => {
+                  var ingredientStr = {"quantity": "0", "name": "", "type": "Unknown"}
+                  this.state.ingredients.push(ingredientStr)
+                }}>+</a>
+              </div>
+
               {this.state.ingredients.map((ingredient, index)=>(
                 <div class="form-inline">
                   <input
@@ -160,9 +161,8 @@ class UpdateRecipeInfo extends Component {
                     var ingredientsTemp = [...this.state.ingredients]
                     ingredientsTemp[index].name = e.target.value
                     this.setState({ingredientsTemp});
-                  }}
-                  
-                  />
+                  }}/>
+
                   <input
                     type='text'
                     placeholder='Quantity'
@@ -175,10 +175,8 @@ class UpdateRecipeInfo extends Component {
                       var ingredientsTemp = [...this.state.ingredients]
                       ingredientsTemp[index].quantity = e.target.value
                       this.setState({ingredientsTemp});
-                    }}
-                  />
+                    }}/>
                 </div>
-                
               ))}
             </div>
 
