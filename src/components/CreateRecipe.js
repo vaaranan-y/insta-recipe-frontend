@@ -12,7 +12,7 @@ class CreateRecipe extends Component {
       author: '',
       ingredients: [],
       steps: [],
-      timers: [],
+      uploadDate: '',
       imageURL: '',
       originalURL: ''
     };
@@ -30,7 +30,7 @@ class CreateRecipe extends Component {
       author: this.state.author,
       ingredients: this.state.ingredients,
       steps: this.state.steps,
-      timers: [],
+      uploadDate: Date(),
       imageURL: this.state.imageURL,
       originalURL: ""
     };

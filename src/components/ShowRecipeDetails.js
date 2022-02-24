@@ -11,7 +11,7 @@ class ShowRecipeDetails extends Component {
       recipe: {},
       ingredients: [],
       steps: [],
-      timers: []
+      uploadDate: ''
     };
   }
 
@@ -27,7 +27,7 @@ class ShowRecipeDetails extends Component {
           recipe: res.data,
           ingredients: res.data.ingredients,
           steps: res.data.steps,
-          timers: res.data.timers
+          uploadDate: res.data.uploadDate
         })
       })
       .catch(err => {
@@ -54,12 +54,7 @@ class ShowRecipeDetails extends Component {
     var ingredients = this.state.ingredients;
     var stepsPrint = []
       for(var i = 0; i < this.state.steps.length; i++){
-        if(this.state.timers[i] == 0 || !(this.state.timers[i])){
-          stepsPrint.push(this.state.steps[i])
-        } else{
-          var temp = this.state.steps[i] + " (" + this.state.timers[i] + " minutes)"
-          stepsPrint.push(temp)
-        }
+        stepsPrint.push(this.state.steps[i])
       }
     console.log(ingredients[0]);
     // var ingredientList = recipe.ingredients;
@@ -107,6 +102,11 @@ class ShowRecipeDetails extends Component {
               </ol>
               </div>
             </td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>Upload Date</td>
+            <td>{ recipe.uploadDate }</td>
           </tr>
           
           

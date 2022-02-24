@@ -12,7 +12,7 @@ class UpdateRecipeInfo extends Component {
       author: '',
       ingredients: [],
       steps: [],
-      timers: [],
+      uploadDate: '',
       imageURL: '',
       originalURL: ''
     };
@@ -30,7 +30,7 @@ class UpdateRecipeInfo extends Component {
           author: res.data.author,
           ingredients: res.data.ingredients,
           steps: res.data.steps,
-          timers: res.data.timers,
+          uploadDate: res.data.uploadDate,
           imageURL: res.data.imageURL,
           originalURL: res.data.originalURL
         })
@@ -59,7 +59,7 @@ class UpdateRecipeInfo extends Component {
       author: this.state.author,
       ingredients: this.state.ingredients,
       steps: this.state.steps,
-      timers: this.state.timers,
+      uploadDate: this.state.uploadDate,
       imageURL: this.state.imageURL,
       originalURL: this.state.originalURL
     };

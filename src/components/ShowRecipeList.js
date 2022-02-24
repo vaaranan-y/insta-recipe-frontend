@@ -12,10 +12,14 @@ class ShowRecipeList extends Component {
     };
   }
 
+  custom_sort(a, b) {
+      return new Date(b.uploadDate).getTime() - new Date(a.uploadDate).getTime();
+  }
   componentDidMount() {
     axios
       .get('http://localhost:8082/api/recipes')
       .then(res => {
+        res.data = res.data.sort(this.custom_sort);
         this.setState({
           recipes: res.data
         })
@@ -25,10 +29,12 @@ class ShowRecipeList extends Component {
       })
   };
 
+  
 
   render() {
+    // recipes.sort(this.custom_sort)
     const recipes = this.state.recipes;
-    console.log("PrintRecipe: " + recipes);
+    console.log("Print Recipes: " + recipes);
     let recipeList;
 
     if(!recipes) {
