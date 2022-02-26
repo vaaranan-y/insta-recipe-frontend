@@ -6,16 +6,15 @@ const RecipeCard = (props) => {
     const  recipe  = props.recipe;
 
     return(
-        <div className="card-container">
-            <img src={recipe.imageURL} alt="Recipe Image" style={{height: "50%", width: "100%", objectFit: "cover"}}/>
-            <div className="desc">
-                <Link to={`/show-recipe/${recipe._id}`}> { recipe.name } </Link>
-                <p>{recipe.author}</p>
+        <div className="card border-primary mb-3" style={{display: "inline-block", width: "100%", height: "250px"}}>
+            <img src={recipe.imageURL} alt="Recipe Image" style={{height: "100%", width:"50%", objectFit: "cover"}}/>
+            <div className="desc text-right" style={{float: "right", width:"50%", height: "100%"}}>
+                <Link to={`/show-recipe/${recipe._id}`} className="h4">{ recipe.name } </Link>
+                <p className="text-muted overflow:hidden">{recipe.author}</p>
             </div>
         </div>
     )
 };
-
 
 export default RecipeCard;
 
