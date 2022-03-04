@@ -77,7 +77,6 @@ class UpdateRecipeInfo extends Component {
 
 
   render() {
-    var ingredientIndex = 0
     
     return (
       <div className="UpdateRecipeInfo">
@@ -243,12 +242,3 @@ export default (props) => (
   params={useParams()}
 />
 );
-
-{/* <input
-                type='text'
-                placeholder='Ingredients'
-                name='ingredients'
-                className='form-control'
-                value={this.state.ingredients}
-                onChange={this.onChange}
-              /> */}

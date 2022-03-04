@@ -50,12 +50,12 @@ class CreateRecipe extends Component {
   render() {
     console.log(this.state.ingredients)
     
-    if(this.state.ingredients.length == 0){
+    if(this.state.ingredients.length === 0){
       var ingredientStr = {"quantity": "0", "name": "", "type": "Unknown"}
       this.state.ingredients.push(ingredientStr)
     }
 
-    if(this.state.steps.length == 0){
+    if(this.state.steps.length === 0){
       var stepStr = ""
       var stepsTemp = [...this.state.steps]
       stepsTemp.push(stepStr)
@@ -227,7 +227,7 @@ class CreateRecipe extends Component {
                     placeholder='Original URL'
                     name='originalURL'
                     className='form-control'
-                    value={this.state.originalURL}
+                    defaultValue={this.state.originalURL}
                     onChange={this.value}
                   />
                 </div>
