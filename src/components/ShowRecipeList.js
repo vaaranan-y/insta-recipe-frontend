@@ -29,6 +29,9 @@ class ShowRecipeList extends Component {
       })
   };
 
+  logout = e => {
+    localStorage.removeItem("isAuthenticated");
+  };
   
 
   render() {
@@ -56,6 +59,9 @@ class ShowRecipeList extends Component {
             </div>
 
             <div className="col-md-11">
+              <Link to="/login" className="btn btn-outline-danger float-left" onClick={this.logout}>
+                Logout
+              </Link>
               <Link to="/create-recipe" className="btn btn-outline-warning float-right">
                 + Create New recipe
               </Link>

@@ -59,7 +59,15 @@ const newUser = {
     };
   
 console.log(newUser);
-axios.post("http://localhost:8082/api/users/register",newUser)
+axios.post("http://localhost:8082/api/users/register",newUser).then(res =>{
+  console.log("new user created");
+}).catch(err => {
+  console.log(err.response);
+  for (var errorType in err.response.data) {
+      alert("Error: " + err.response.data[errorType]);
+  }
+  
+})
   };
   
   render(){
