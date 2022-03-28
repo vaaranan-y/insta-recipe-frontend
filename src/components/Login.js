@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import classnames from "classnames";
 import axios from 'axios';
-import jwt from 'jsonwebtoken';
 
 class Login extends Component {
   constructor() {
@@ -14,9 +13,9 @@ class Login extends Component {
     };
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/example"); // push user to dashboard when they login
-    }
+    // if (nextProps.auth.isAuthenticated) {
+    //   this.props.history.push("/example"); // push user to dashboard when they login
+    // }
 if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors
@@ -36,20 +35,8 @@ const userData = {
     console.log(userData);
     axios.post("http://localhost:8082/api/users/login", userData).then(res => {
       
-      console.log(res);
-      localStorage.setItem("isAuthenticated", "true");
-      const payload = {
-        email: this.state.email,
-        name: this.state.name 
-      }
-      // jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: 86400}, (err, token) => {
-      //   if (err) return res.json({messages: err});
-      //   return res.json({
-      //     message: "Success",
-      //     token: "Bearer " + token
-      //   })
-      // })
-      this.props.navigate("/show-recipes");
+      console.log(res.data.token);
+      this.props.navigate("/show-recipes", { state : res.data.token});
     }).catch(err => {
       console.log(err.response);
       for (var errorType in err.response.data) {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
-
+import { useLocation, useNavigate } from 'react-router-dom';
 
 class CreateRecipe extends Component {
   constructor() {
@@ -49,7 +49,7 @@ class CreateRecipe extends Component {
 
   render() {
     console.log(this.state.ingredients)
-    
+    console.log(this.props.location.state.token)
     if(this.state.ingredients.length === 0){
       var ingredientStr = {"quantity": "0", "name": "", "type": "Unknown"}
       this.state.ingredients.push(ingredientStr)
@@ -71,7 +71,7 @@ class CreateRecipe extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <br />
-              <Link to="/" className="btn btn-outline-warning float-left">
+              <Link to="/show-recipes" state = {this.props.location.state.token} className="btn btn-outline-warning float-left">
                   Show Recipe List
               </Link>
             </div>
@@ -245,4 +245,9 @@ class CreateRecipe extends Component {
   }
 }
 
-export default CreateRecipe;
+export default (props) => (
+  <CreateRecipe
+    {...props}
+    location={useLocation()}
+  />
+);

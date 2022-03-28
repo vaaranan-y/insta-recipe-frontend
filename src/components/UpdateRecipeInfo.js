@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 class UpdateRecipeInfo extends Component {
   constructor(props) {
@@ -77,14 +77,14 @@ class UpdateRecipeInfo extends Component {
 
 
   render() {
-    
+    console.log(this.props.location.state);
     return (
       <div className="UpdateRecipeInfo">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <br />
-              <Link to="/" className="btn btn-outline-warning float-left">
+              <Link to="/show-recipes" state = {this.props.location.state} className="btn btn-outline-warning float-left">
                   Show Recipe List
               </Link>
             </div>
@@ -240,5 +240,6 @@ export default (props) => (
   <UpdateRecipeInfo
   {...props}
   params={useParams()}
+  location={useLocation()}
 />
 );

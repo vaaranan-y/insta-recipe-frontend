@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 class ShowRecipeDetails extends Component {
   constructor(props) {
@@ -49,7 +49,7 @@ class ShowRecipeDetails extends Component {
 
 
   render() {
-    
+    console.log(this.props.location.state.token);
     var recipe = this.state.recipe;
     var ingredients = this.state.ingredients;
     var stepsPrint = []
@@ -120,7 +120,7 @@ class ShowRecipeDetails extends Component {
           <div className="row">
             <div className="col-md-10 m-auto">
               <br /> <br />
-              <Link to="/" className="btn btn-outline-warning float-left">
+              <Link to="/show-recipes" state = {this.props.location.state.token} className="btn btn-outline-warning float-left">
                   Show Recipe List
               </Link>
             </div>
@@ -143,7 +143,7 @@ class ShowRecipeDetails extends Component {
             </div>
 
             <div className="col-md-6">
-              <Link to={`/edit-recipe/${recipe._id}`} className="btn btn-outline-info btn-lg btn-block">
+              <Link to={`/edit-recipe/${recipe._id}`} state = {this.props.location.state.token} className="btn btn-outline-info btn-lg btn-block">
                     Edit Recipe
               </Link>
               <br />
@@ -163,6 +163,7 @@ class ShowRecipeDetails extends Component {
 export default (props) => (
   <ShowRecipeDetails
     {...props}
+    location={useLocation()}
     params={useParams()}
   />
 );

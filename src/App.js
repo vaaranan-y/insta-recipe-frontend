@@ -29,7 +29,10 @@ class App extends Component {
         
           <Routes>
             <Route path='/create-recipe' element={<CreateRecipe/>} />
-            <Route path='/show-recipes' element={<ProtectedRoute><ShowRecipeList/></ProtectedRoute>}/>
+            {/* <Route exact path='/show-recipes' element={<ProtectedRoute/>}>
+              <Route exact path='/show-recipes' element={<ShowRecipeList/>}/>
+            </Route> */}
+            <Route exact path='/show-recipes' element={<ShowRecipeList/>}/>
             <Route path='/edit-recipe/:id' element={<UpdateRecipeInfo/>} />
             <Route path='/show-recipe/:id' element={<ShowRecipeDetails/>} />
           </Routes>  

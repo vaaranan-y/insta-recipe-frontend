@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 
 class ShowRecipeList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // email: this.props.userData.email,
+      // password: this.props.userData.password,
       recipes: []
     };
   }
-
+  
   custom_sort(a, b) {
       return new Date(b.uploadDate).getTime() - new Date(a.uploadDate).getTime();
   }
   componentDidMount() {
+    // const state = this.props.location();
+    console.log(this.props.location.state);
+
     axios
-      .get('http://localhost:8082/api/recipes')
+      .get('http://localhost:8082/api/recipes?token='+this.props.location.state)
       .then(res => {
+        
         res.data = res.data.sort(this.custom_sort);
         this.setState({
           recipes: res.data
@@ -26,11 +32,14 @@ class ShowRecipeList extends Component {
       })
       .catch(err =>{
         console.log('Error from ShowRecipeList');
+        this.props.navigate("/login")
       })
   };
 
   logout = e => {
     localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("email");
+    localStorage.removeItem("token");
   };
   
 
@@ -44,7 +53,7 @@ class ShowRecipeList extends Component {
       recipeList = "there is no recipe record!";
     } else {
       recipeList = recipes.map((recipe, k) =>
-        <RecipeCard recipe={recipe} key={k} />
+        <RecipeCard token = {this.props.location.state} recipe={recipe} key={k} />
       );
       console.log(typeof(recipes));
     }
@@ -62,7 +71,7 @@ class ShowRecipeList extends Component {
               <Link to="/login" className="btn btn-outline-danger float-left" onClick={this.logout}>
                 Logout
               </Link>
-              <Link to="/create-recipe" className="btn btn-outline-warning float-right">
+              <Link to="/create-recipe" state = {{ token:this.props.location.state }} className="btn btn-outline-warning float-right">
                 + Create New recipe
               </Link>
               <br />
@@ -81,4 +90,11 @@ class ShowRecipeList extends Component {
   }
 }
 
-export default ShowRecipeList;
+// export default ShowRecipeList;
+
+export default (props) => (
+  <ShowRecipeList
+  {...props}
+  location={useLocation()}
+  navigate={useNavigate()}
+/>);
