@@ -10,6 +10,7 @@ class UpdateRecipeInfo extends Component {
     this.state = {
       name: '',
       author: '',
+      email: '',
       ingredients: [],
       steps: [],
       uploadDate: '',
@@ -22,12 +23,13 @@ class UpdateRecipeInfo extends Component {
     const { id } = this.props.params;
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .get('http://localhost:8082/api/'+id)
+      .get('http://localhost:8082/api/'+id+'?token='+this.props.location.state)
       .then(res => {
         // this.setState({...this.state, book: res.data})
         this.setState({
           name: res.data.name,
           author: res.data.author,
+          email: res.data.email,
           ingredients: res.data.ingredients,
           steps: res.data.steps,
           uploadDate: res.data.uploadDate,
@@ -57,6 +59,7 @@ class UpdateRecipeInfo extends Component {
     const data = {
       name: this.state.name,
       author: this.state.author,
+      email: this.state.email,
       ingredients: this.state.ingredients,
       steps: this.state.steps,
       uploadDate: this.state.uploadDate,

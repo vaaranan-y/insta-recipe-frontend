@@ -19,12 +19,10 @@ class ShowRecipeList extends Component {
   }
   componentDidMount() {
     // const state = this.props.location();
-    console.log(this.props.location.state);
 
     axios
-      .get('http://localhost:8082/api/recipes?token='+this.props.location.state)
+      .get('http://localhost:8082/api/recipes?token='+this.props.location.state.token)
       .then(res => {
-        
         res.data = res.data.sort(this.custom_sort);
         this.setState({
           recipes: res.data
@@ -46,7 +44,6 @@ class ShowRecipeList extends Component {
   render() {
     // recipes.sort(this.custom_sort)
     const recipes = this.state.recipes;
-    console.log("Print Recipes: " + recipes);
     let recipeList;
 
     if(!recipes) {
@@ -57,6 +54,8 @@ class ShowRecipeList extends Component {
       );
       console.log(typeof(recipes));
     }
+
+
 
     return (
       <div className="ShowRecipeList">

@@ -10,6 +10,7 @@ class CreateRecipe extends Component {
     this.state = {
       name: '',
       author: '',
+      email: '',
       ingredients: [],
       steps: [],
       uploadDate: '',
@@ -28,6 +29,7 @@ class CreateRecipe extends Component {
     const data = {
       name: this.state.name,
       author: this.state.author,
+      email: this.props.location.state.token.email,
       ingredients: this.state.ingredients,
       steps: this.state.steps,
       uploadDate: Date(),
@@ -49,7 +51,7 @@ class CreateRecipe extends Component {
 
   render() {
     console.log(this.state.ingredients)
-    console.log(this.props.location.state.token)
+    console.log(this.props.location.state.token.email);
     if(this.state.ingredients.length === 0){
       var ingredientStr = {"quantity": "0", "name": "", "type": "Unknown"}
       this.state.ingredients.push(ingredientStr)
@@ -110,7 +112,7 @@ class CreateRecipe extends Component {
                 <div className='form-group'>
                   <label htmlFor="ingredients">Ingredients</label>
                   <div class="btn-group" style={{padding: "25px"}}>
-                    <a href="#ingredientsSection" class="btn btn-danger minusStep"onClick={() => {
+                    <a class="btn btn-danger minusStep"onClick={() => {
                        var ingredientsTemp = [...this.state.ingredients]
                        ingredientsTemp.pop()
                        this.setState(prevState => ({
@@ -118,7 +120,7 @@ class CreateRecipe extends Component {
                        }));
                        console.log(this.state.ingredients.length)
                     }}>-</a>
-                    <a href="#ingredientsSection" class="btn btn-success addStep" onClick={() => {
+                    <a class="btn btn-success addStep" onClick={() => {
                       var ingredientStr = {"quantity": "0", "name": "", "type": "Unknown"}
                       var ingredientsTemp = [...this.state.ingredients]
                       ingredientsTemp.push(ingredientStr)
@@ -167,7 +169,7 @@ class CreateRecipe extends Component {
                 <div className='form-group'>
                   <label htmlFor="steps">Steps</label>
                   <div class="btn-group" style={{padding: "25px"}}>
-                      <a href="#stepsSection" class="btn btn-danger minusStep"onClick={() => {
+                      <a class="btn btn-danger minusStep"onClick={() => {
                         var stepsTemp = [...this.state.steps]
                         stepsTemp.pop()
                         this.setState(prevState => ({
@@ -175,7 +177,7 @@ class CreateRecipe extends Component {
                         }));
                         console.log(this.state.steps.length)
                       }}>-</a>
-                      <a href="#stepsSection" class="btn btn-success addStep" onClick={() => {
+                      <a class="btn btn-success addStep" onClick={() => {
                         var stepStr = ""
                         var stepsTemp = [...this.state.steps]
                         stepsTemp.push(stepStr)

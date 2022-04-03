@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 class ShowRecipeDetails extends Component {
   constructor(props) {
@@ -20,9 +20,10 @@ class ShowRecipeDetails extends Component {
     const { id } = this.props.params;
     console.log("Print id: " + id);
     axios
-      .get('http://localhost:8082/api/' + id)
+      .get('http://localhost:8082/api/'+id+'?token='+this.props.location.state.token.token)
       .then(res => {
         // console.log("Print-showBookDetails-API-response: " + res.data);
+        console.log(this.props.location.state.token.email)
         this.setState({
           recipe: res.data,
           ingredients: res.data.ingredients,
@@ -40,7 +41,8 @@ class ShowRecipeDetails extends Component {
       .delete('http://localhost:8082/api/'+id)
       .then(res => {
         alert("Recipe Deleted");
-        this.props.history.push("/");
+        // this.props.history.push("/show-recipes");
+        // this.props.navigate("/show-recipes")
       })
       .catch(err => {
         console.log("Error form ShowRecipeDetails_deleteClick");
@@ -49,7 +51,7 @@ class ShowRecipeDetails extends Component {
 
 
   render() {
-    console.log(this.props.location.state.token);
+    console.log(this.props.location.state.token.token);
     var recipe = this.state.recipe;
     var ingredients = this.state.ingredients;
     var stepsPrint = []
@@ -61,6 +63,8 @@ class ShowRecipeDetails extends Component {
     // var ingredientList = recipe.ingredients.map((ingredient, k) =>
     //       <tr>ingredient</tr>
     //   );
+    var show = String(this.props.location.state.token.email) === this.state.recipe.email
+    
     let RecipeItem = <div>
       <table className="table table-hover table-dark">
         <tbody>
@@ -74,11 +78,11 @@ class ShowRecipeDetails extends Component {
             <td>Author</td>
             <td>{ recipe.author }</td>
           </tr>
-          <tr>
+          {/* <tr>
             <th scope="row"></th>
             <td>Image URL</td>
             <td>{ recipe.imageURL }</td>
-          </tr>
+          </tr> */}
           <tr>
             <th scope="row"></th>
             <td>Ingredients</td>
@@ -139,11 +143,11 @@ class ShowRecipeDetails extends Component {
 
           <div className="row">
             <div className="col-md-6">
-              <button type="button" className="btn btn-outline-danger btn-lg btn-block" onClick={this.onDeleteClick.bind(this,recipe._id)}>Delete Recipe</button><br />
+              <button type="button" className="btn btn-outline-danger btn-lg btn-block" onClick={this.onDeleteClick.bind(this,recipe._id)} style={{ visibility: show ? "visible" : "hidden" }}>Delete Recipe</button><br />
             </div>
 
             <div className="col-md-6">
-              <Link to={`/edit-recipe/${recipe._id}`} state = {this.props.location.state.token} className="btn btn-outline-info btn-lg btn-block">
+              <Link to={show ? `/edit-recipe/${recipe._id}` : `/show-recipe/${recipe._id}`} state = {show ? this.props.location.state.token : { token:this.props.location.state.token }} className="btn btn-outline-info btn-lg btn-block" style={{ visibility: show ? "visible" : "hidden" }}>
                     Edit Recipe
               </Link>
               <br />
@@ -165,6 +169,7 @@ export default (props) => (
     {...props}
     location={useLocation()}
     params={useParams()}
+    navigate={useNavigate()}
   />
 );
 
