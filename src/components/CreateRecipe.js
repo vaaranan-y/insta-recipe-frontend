@@ -38,7 +38,7 @@ class CreateRecipe extends Component {
     };
 
     axios
-      .post('http://localhost:8082/api', data)
+      .post('https://insta-recipe-blog-app.herokuapp.com/api', data)
       .then(res => {
         alert("Recipe Successfully Uploaded");
         this.props.history.push('/');

@@ -22,8 +22,9 @@ class UpdateRecipeInfo extends Component {
   componentDidMount() {
     const { id } = this.props.params;
     // console.log("Print id: " + this.props.match.params.id);
+    console.log(this.props.location.state.token)
     axios
-      .get('http://localhost:8082/api/'+id+'?token='+this.props.location.state)
+      .get('https://insta-recipe-blog-app.herokuapp.com/api/'+id+'?token='+this.props.location.state.token)
       .then(res => {
         // this.setState({...this.state, book: res.data})
         this.setState({
@@ -68,7 +69,7 @@ class UpdateRecipeInfo extends Component {
     };
 
     axios
-      .put('http://localhost:8082/api/'+id, data)
+      .put('https://insta-recipe-blog-app.herokuapp.com/api/'+id, data)
       .then(res => {
         // this.props.history.push('/');
         alert("Recipe Successfully Updated");

@@ -33,7 +33,7 @@ const userData = {
     };
     
     console.log(userData);
-    axios.post("http://localhost:8082/api/users/login", userData).then(res => {
+    axios.post("https://insta-recipe-blog-app.herokuapp.com/api/users/login", userData).then(res => {
       console.log(res.data.token);
       console.log(res.data);
       this.props.navigate("/show-recipes", { state : res.data });

@@ -20,7 +20,7 @@ class ShowRecipeDetails extends Component {
     const { id } = this.props.params;
     console.log("Print id: " + id);
     axios
-      .get('http://localhost:8082/api/'+id+'?token='+this.props.location.state.token.token)
+      .get('https://insta-recipe-blog-app.herokuapp.com/api/'+id+'?token='+this.props.location.state.token.token)
       .then(res => {
         // console.log("Print-showBookDetails-API-response: " + res.data);
         console.log(this.props.location.state.token.email)
@@ -38,7 +38,7 @@ class ShowRecipeDetails extends Component {
 
   onDeleteClick (id) {
     axios
-      .delete('http://localhost:8082/api/'+id)
+      .delete('https://insta-recipe-blog-app.herokuapp.com/api/'+id)
       .then(res => {
         alert("Recipe Deleted");
         // this.props.history.push("/show-recipes");

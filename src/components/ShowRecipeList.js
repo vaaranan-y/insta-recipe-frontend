@@ -21,7 +21,7 @@ class ShowRecipeList extends Component {
     // const state = this.props.location();
 
     axios
-      .get('http://localhost:8082/api/recipes?token='+this.props.location.state.token)
+      .get('https://insta-recipe-blog-app.herokuapp.com/api/recipes?token='+this.props.location.state.token)
       .then(res => {
         res.data = res.data.sort(this.custom_sort);
         this.setState({
