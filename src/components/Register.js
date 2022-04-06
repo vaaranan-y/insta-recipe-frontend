@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import classnames from "classnames";
 
@@ -41,6 +41,7 @@ const newUser = {
 // console.log(newUser);
 axios.post("https://insta-recipe-blog-app.herokuapp.com/api/users/register",newUser).then(res =>{
   console.log("new user created");
+  this.props.navigate("/login");
 }).catch(err => {
   console.log(err.response);
   for (var errorType in err.response.data) {
@@ -153,17 +154,8 @@ axios.post("https://insta-recipe-blog-app.herokuapp.com/api/users/register",newU
   }
 }
 
-export default Register;
-// Register.propTypes = {
-//   registerUser: PropTypes.func.isRequired,
-//   auth: PropTypes.object.isRequired,
-//   errors: PropTypes.object.isRequired
-// };
-// const mapStateToProps = state => ({
-//   auth: state.auth,
-//   errors: state.errors
-// });
-// export default connect(
-//   mapStateToProps,
-//   { registerUser }
-// )(withRouter(Register));
+export default (props) => (
+  <Register
+  {...props}
+  navigate={useNavigate()}
+/>);

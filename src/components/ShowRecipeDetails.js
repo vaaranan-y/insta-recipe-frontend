@@ -39,7 +39,7 @@ class ShowRecipeDetails extends Component {
       .then(res => {
         alert("Recipe Deleted");
         // this.props.history.push("/show-recipes");
-        // this.props.navigate("/show-recipes")
+        this.props.navigate("/show-recipes", { state : this.props.location.state.token });
       })
       .catch(err => {
         console.log("Error form ShowRecipeDetails_deleteClick");

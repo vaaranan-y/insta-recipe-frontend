@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 import { useParams, useLocation } from "react-router-dom";
@@ -67,8 +67,8 @@ class UpdateRecipeInfo extends Component {
     axios
       .put('https://insta-recipe-blog-app.herokuapp.com/api/'+id, data)
       .then(res => {
-        // this.props.history.push('/');
         alert("Recipe Successfully Updated");
+        this.props.navigate("/show-recipes", { state : this.props.location.state });
       })
       .catch(err => {
         console.log("Error in UpdateRecipeInfo!");
@@ -240,5 +240,6 @@ export default (props) => (
   {...props}
   params={useParams()}
   location={useLocation()}
+  navigate={useNavigate()}
 />
 );
