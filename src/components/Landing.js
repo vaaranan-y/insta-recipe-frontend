@@ -15,11 +15,11 @@ class Landing extends Component {
                 <div class="card-body">
                     <h5 class="card-title">Join Today!</h5>
                     <p class="card-text">Start sharing your recipes now!</p>
-                    <Link to="/register" className="btn btn-primary">Register</Link>
+                    <Link to="/register" className="btn btn-success">Register</Link>
                     <br/>
                     <br/>
                     <p class="card-text">Or login with your email!</p>
-                    <Link to="/login" className="btn btn-large waves-effect waves-light hoverable blue accent-3">Login</Link>
+                    <Link to="/login" className="btn btn-inverse btn-success">Login</Link>
                     <br/>
                 </div>
             </div>

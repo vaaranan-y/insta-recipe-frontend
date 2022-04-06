@@ -52,7 +52,6 @@ class ShowRecipeList extends Component {
       recipeList = recipes.map((recipe, k) =>
         <RecipeCard token = {this.props.location.state} recipe={recipe} key={k} />
       );
-      console.log(typeof(recipes));
     }
 
 
@@ -66,7 +65,7 @@ class ShowRecipeList extends Component {
               <h2 className="display-4 text-center">Insta Recipe</h2>
             </div>
 
-            <div className="col-md-11">
+            <div className="col-md-12">
               <Link to="/login" className="btn btn-outline-danger float-left" onClick={this.logout}>
                 Logout
               </Link>

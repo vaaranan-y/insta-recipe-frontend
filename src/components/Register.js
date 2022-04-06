@@ -15,26 +15,6 @@ class Register extends Component {
     };
   }
 
-  // componentDidMount() {
-    
-  //   const { id } = this.props.params;
-  //   console.log("Print id: " + id);
-  //   axios
-  //     .get('http://localhost:8082/api/' + id)
-  //     .then(res => {
-  //       // console.log("Print-showBookDetails-API-response: " + res.data);
-  //       this.setState({
-  //         recipe: res.data,
-  //         ingredients: res.data.ingredients,
-  //         steps: res.data.steps,
-  //         uploadDate: res.data.uploadDate
-  //       })
-  //     })
-  //     .catch(err => {
-  //       console.log("Error from ShowRecipeDetails");
-  //     })
-  // };
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({
@@ -44,13 +24,13 @@ class Register extends Component {
   }
 
 onChange = e => {
-    console.log(e.target.name)
+    // console.log(e.target.name)
     this.setState({ [e.target.name]: e.target.value });
   };
 onSubmit = e => {
     e.preventDefault();
-    console.log(this.state.name)
-    console.log(this.state.email)
+    // console.log(this.state.name)
+    // console.log(this.state.email)
 const newUser = {
       name: this.state.name,
       email: this.state.email,
@@ -58,7 +38,7 @@ const newUser = {
       password2: this.state.password2
     };
   
-console.log(newUser);
+// console.log(newUser);
 axios.post("https://insta-recipe-blog-app.herokuapp.com/api/users/register",newUser).then(res =>{
   console.log("new user created");
 }).catch(err => {
@@ -90,7 +70,7 @@ axios.post("https://insta-recipe-blog-app.herokuapp.com/api/users/register",newU
               
               
               <form noValidate onSubmit={this.onSubmit}>
-                <div className="input-field col s12">
+                <div className="form-outline mb-4">
                   <input
                     onChange={this.onChange}
                     error={this.state.errors.name}
@@ -101,11 +81,11 @@ axios.post("https://insta-recipe-blog-app.herokuapp.com/api/users/register",newU
                       invalid: this.state.errors.name
                     })}
                     onChange={this.onChange}
+                    class="form-control"
                   />
-                  
                   <span className="red-text">{this.state.errors.name}</span>
                 </div>
-                <div className="input-field col s12">
+                <div className="form-outline mb-4">
                   <input
                     onChange={this.onChange}
                     error={this.state.errors.name}
@@ -116,24 +96,26 @@ axios.post("https://insta-recipe-blog-app.herokuapp.com/api/users/register",newU
                       invalid: this.state.errors.email
                     })}
                     onChange={this.onChange}
+                    class="form-control"
                   />
                   <span className="red-text">{this.state.errors.email}</span>
                 </div>
-                <div className="input-field col s12">
+                <div className="form-outline mb-4">
                   <input
                     onChange={this.onChange}
                     error={this.state.errors.password}
                     name="password"
                     type="password"
-                    placeholder="Passowrd"
+                    placeholder="Password"
                     className={classnames("", {
                       invalid: this.state.errors.passowrd
                     })}
                     onChange={this.onChange}
+                    class="form-control"
                   />
                   <span className="red-text">{this.state.errors.password}</span>
                 </div>
-                <div className="input-field col s12">
+                <div className="form-outline mb-4">
                   <input
                     onChange={this.onChange}
                     error={this.state.errors.password2}
@@ -144,6 +126,7 @@ axios.post("https://insta-recipe-blog-app.herokuapp.com/api/users/register",newU
                       invalid: this.state.errors.password2
                     })}
                     onChange={this.onChange}
+                    class="form-control"
                   />
                   <span className="red-text">{this.state.errors.password2}</span>
                 </div>
@@ -157,6 +140,7 @@ axios.post("https://insta-recipe-blog-app.herokuapp.com/api/users/register",newU
                     }}
                     type="submit"
                     className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                    class="btn btn-inverse btn-success"
                   >
                     Sign up
                   </button>

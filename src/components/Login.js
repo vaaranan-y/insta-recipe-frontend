@@ -32,10 +32,8 @@ const userData = {
       password: this.state.password
     };
     
-    console.log(userData);
     axios.post("https://insta-recipe-blog-app.herokuapp.com/api/users/login", userData).then(res => {
-      console.log(res.data.token);
-      console.log(res.data);
+      // console.log(res.data);
       this.props.navigate("/show-recipes", { state : res.data });
     }).catch(err => {
       console.log(err.response);
@@ -63,7 +61,7 @@ return (
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
-              <div className="input-field col s12">
+              <div className="form-outline mb-4">
                 <input
                   onChange={this.onChange}
                   error={this.state.errors.email}
@@ -73,13 +71,14 @@ return (
                   className={classnames("", {
                     invalid: this.state.errors.email || errors.emailnotfound
                   })}
+                  class="form-control"
                 />
                 <span className="red-text">
                   {this.state.errors.email}
                   {this.state.errors.emailnotfound}
                 </span>
               </div>
-              <div className="input-field col s12">
+              <div className="form-outline mb-4">
                 <input
                   onChange={this.onChange}
                   error={this.state.errors.password}
@@ -89,6 +88,7 @@ return (
                   className={classnames("", {
                     invalid: errors.password || errors.passwordincorrect
                   })}
+                  class="form-control"
                 />
                 <span className="red-text">
                   {errors.password}
@@ -104,7 +104,7 @@ return (
                     marginTop: "1rem"
                   }}
                   type="submit"
-                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                  className="btn btn-primary btn-block mb-4"
                 >
                   Login
                 </button>

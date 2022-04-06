@@ -21,8 +21,6 @@ class UpdateRecipeInfo extends Component {
 
   componentDidMount() {
     const { id } = this.props.params;
-    // console.log("Print id: " + this.props.match.params.id);
-    console.log(this.props.location.state.token)
     axios
       .get('https://insta-recipe-blog-app.herokuapp.com/api/'+id+'?token='+this.props.location.state.token)
       .then(res => {
@@ -44,13 +42,11 @@ class UpdateRecipeInfo extends Component {
   };
 
   onChange = e => {
-    console.log(e.target.name)
+    // console.log(e.target.name)
     this.setState({ [e.target.name]: e.target.value });
   };
 
   onSubmit = e => {
-    console.log(this.state.steps)
-    console.log(this.state.name)
     e.preventDefault();
     // var ingredientsTotal = []
     // for(var i = 0; i < this.state.ingredients.length; i++){
@@ -81,7 +77,6 @@ class UpdateRecipeInfo extends Component {
 
 
   render() {
-    console.log(this.props.location.state);
     return (
       <div className="UpdateRecipeInfo">
         <div className="container">
@@ -159,7 +154,7 @@ class UpdateRecipeInfo extends Component {
                   className='form-control'
                   defaultValue={ingredient.name}
                   onChange={(e)=>{
-                    console.log(e.target.name)
+                    // console.log(e.target.name)
                     // create shallow copy of ingredients, modify name of ingredient in question, then put it back
                     var ingredientsTemp = [...this.state.ingredients]
                     ingredientsTemp[index].name = e.target.value
@@ -173,7 +168,7 @@ class UpdateRecipeInfo extends Component {
                     className='form-control'
                     defaultValue={ingredient.quantity}
                     onChange={(e)=>{
-                      console.log(e.target.name)
+                      // console.log(e.target.name)
                       // create shallow copy of ingredients, modify name of ingredient in question, then put it back
                       var ingredientsTemp = [...this.state.ingredients]
                       ingredientsTemp[index].quantity = e.target.value
@@ -206,7 +201,7 @@ class UpdateRecipeInfo extends Component {
                         className='form-control'
                         defaultValue={step}
                         onChange={(e)=>{
-                          console.log(e.target.name)
+                          // console.log(e.target.name)
                           // create shallow copy of steps, modify name of step in question, then put it back
                           var stepsTemp = [...this.state.steps]
                           stepsTemp[index] = e.target.value

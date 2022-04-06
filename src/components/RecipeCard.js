@@ -4,7 +4,6 @@ import '../App.css';
 
 const RecipeCard = (props) => {
     const recipe  = props.recipe;
-    // console.log(props.token);
     return(
         <div className="card border-secondary mb-3" style={{display: "inline-block", width: "100%", height: "250px"}}>
             <img src={recipe.imageURL} alt="Recipe" style={{height: "100%", width:"50%", objectFit: "cover"}}/>

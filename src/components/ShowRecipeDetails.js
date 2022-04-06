@@ -18,12 +18,9 @@ class ShowRecipeDetails extends Component {
   componentDidMount() {
     
     const { id } = this.props.params;
-    console.log("Print id: " + id);
     axios
       .get('https://insta-recipe-blog-app.herokuapp.com/api/'+id+'?token='+this.props.location.state.token.token)
       .then(res => {
-        // console.log("Print-showBookDetails-API-response: " + res.data);
-        console.log(this.props.location.state.token.email)
         this.setState({
           recipe: res.data,
           ingredients: res.data.ingredients,
@@ -51,14 +48,13 @@ class ShowRecipeDetails extends Component {
 
 
   render() {
-    console.log(this.props.location.state.token.token);
+
     var recipe = this.state.recipe;
     var ingredients = this.state.ingredients;
     var stepsPrint = []
       for(var i = 0; i < this.state.steps.length; i++){
         stepsPrint.push(this.state.steps[i])
       }
-    console.log(ingredients[0]);
     // var ingredientList = recipe.ingredients;
     // var ingredientList = recipe.ingredients.map((ingredient, k) =>
     //       <tr>ingredient</tr>

@@ -25,7 +25,6 @@ class CreateRecipe extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    console.log(this.state)
     const data = {
       name: this.state.name,
       author: this.state.author,
@@ -50,8 +49,6 @@ class CreateRecipe extends Component {
 
 
   render() {
-    console.log(this.state.ingredients)
-    console.log(this.props.location.state.token.email);
     if(this.state.ingredients.length === 0){
       var ingredientStr = {"quantity": "0", "name": "", "type": "Unknown"}
       this.state.ingredients.push(ingredientStr)
@@ -118,7 +115,6 @@ class CreateRecipe extends Component {
                        this.setState(prevState => ({
                          ingredients: ingredientsTemp
                        }));
-                       console.log(this.state.ingredients.length)
                     }}>-</a>
                     <a class="btn btn-success addStep" onClick={() => {
                       var ingredientStr = {"quantity": "0", "name": "", "type": "Unknown"}
@@ -127,8 +123,6 @@ class CreateRecipe extends Component {
                       this.setState(prevState => ({
                         ingredients: ingredientsTemp
                       }));
-                      console.log(this.state.ingredients.length)
-                      
                     }}>+</a>
                 </div>
                      
@@ -141,7 +135,7 @@ class CreateRecipe extends Component {
                           className='form-control'
                           defaultValue={ingredient.name}
                           onChange={(e)=>{
-                            console.log(e.target.name)
+                            // console.log(e.target.name)
                             // create shallow copy of ingredients, modify name of ingredient in question, then put it back
                             var ingredientsTemp = [...this.state.ingredients]
                             ingredientsTemp[index].name = e.target.value
@@ -155,7 +149,7 @@ class CreateRecipe extends Component {
                             className='form-control'
                             defaultValue={ingredient.quantity}
                             onChange={(e)=>{
-                              console.log(e.target.name)
+                              // console.log(e.target.name)
                               // create shallow copy of ingredients, modify name of ingredient in question, then put it back
                               var ingredientsTemp = [...this.state.ingredients]
                               ingredientsTemp[index].quantity = e.target.value
@@ -175,7 +169,6 @@ class CreateRecipe extends Component {
                         this.setState(prevState => ({
                           steps: stepsTemp
                         }));
-                        console.log(this.state.steps.length)
                       }}>-</a>
                       <a class="btn btn-success addStep" onClick={() => {
                         var stepStr = ""
@@ -184,7 +177,6 @@ class CreateRecipe extends Component {
                         this.setState(prevState => ({
                           steps: stepsTemp
                         }));
-                        console.log(this.state.steps.length)
                         
                       }}>+</a>
                   </div>
@@ -198,7 +190,7 @@ class CreateRecipe extends Component {
                             className='form-control'
                             defaultValue={step}
                             onChange={(e)=>{
-                              console.log(e.target.name)
+                              // console.log(e.target.name)
                               // create shallow copy of steps, modify name of step in question, then put it back
                               var stepsTemp = [...this.state.steps]
                               stepsTemp[index] = e.target.value
