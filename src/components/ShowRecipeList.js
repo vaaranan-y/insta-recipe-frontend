@@ -21,17 +21,20 @@ class ShowRecipeList extends Component {
     // const state = this.props.location();
 
     axios
-      .get('https://insta-recipe-blog-app.herokuapp.com/api/recipes?token='+this.props.location.state.token)
-      .then(res => {
+      .get(
+        "http://localhost:8082/api/recipes?token=" +
+          this.props.location.state.token
+      )
+      .then((res) => {
         res.data = res.data.sort(this.custom_sort);
         this.setState({
-          recipes: res.data
-        })
+          recipes: res.data,
+        });
       })
-      .catch(err =>{
-        console.log('Error from ShowRecipeList');
-        this.props.navigate("/login")
-      })
+      .catch((err) => {
+        console.log("Error from ShowRecipeList");
+        this.props.navigate("/login");
+      });
   };
 
   logout = e => {

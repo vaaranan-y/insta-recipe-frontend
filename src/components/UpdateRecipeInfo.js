@@ -22,8 +22,13 @@ class UpdateRecipeInfo extends Component {
   componentDidMount() {
     const { id } = this.props.params;
     axios
-      .get('https://insta-recipe-blog-app.herokuapp.com/api/'+id+'?token='+this.props.location.state.token)
-      .then(res => {
+      .get(
+        "http://localhost:8082/api/" +
+          id +
+          "?token=" +
+          this.props.location.state.token
+      )
+      .then((res) => {
         // this.setState({...this.state, book: res.data})
         this.setState({
           name: res.data.name,
@@ -33,12 +38,12 @@ class UpdateRecipeInfo extends Component {
           steps: res.data.steps,
           uploadDate: res.data.uploadDate,
           imageURL: res.data.imageURL,
-          originalURL: res.data.originalURL
-        })
+          originalURL: res.data.originalURL,
+        });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("Error from UpdateRecipeInfo");
-      })
+      });
   };
 
   onChange = e => {
@@ -65,14 +70,16 @@ class UpdateRecipeInfo extends Component {
     };
 
     axios
-      .put('https://insta-recipe-blog-app.herokuapp.com/api/'+id, data)
-      .then(res => {
+      .put("http://localhost:8082/api/" + id, data)
+      .then((res) => {
         alert("Recipe Successfully Updated");
-        this.props.navigate("/show-recipes", { state : this.props.location.state });
+        this.props.navigate("/show-recipes", {
+          state: this.props.location.state,
+        });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("Error in UpdateRecipeInfo!");
-      })
+      });
   };
 
 

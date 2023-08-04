@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import classnames from "classnames";
-import axios from 'axios';
+import axios from "axios";
 
 class Login extends Component {
   constructor() {
@@ -9,42 +9,50 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      errors: {}
+      errors: {},
     };
   }
   componentWillReceiveProps(nextProps) {
     // if (nextProps.auth.isAuthenticated) {
     //   this.props.history.push("/example"); // push user to dashboard when they login
     // }
-if (nextProps.errors) {
+    if (nextProps.errors) {
       this.setState({
-        errors: nextProps.errors
+        errors: nextProps.errors,
       });
     }
   }
-onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
-const userData = {
+    const userData = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
-    
-    axios.post("https://insta-recipe-blog-app.herokuapp.com/api/users/login", userData).then(res => {
-      // console.log(res.data);
-      this.props.navigate("/show-recipes", { state : res.data });
-    }).catch(err => {
-      console.log(err.response);
-      for (var errorType in err.response.data) {
-        alert("Error: " + err.response.data[errorType]);
-    }
-    })
+
+    const api_link_cloud = "http://localhost:8082/api/users/login";
+    const api_link_logo = "http://localhost:8082/api/users/login";
+
+    axios
+      .post(api_link_logo, userData)
+      .then((res) => {
+        // console.log(res.data);
+        this.props.navigate("/show-recipes", { state: res.data });
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+          for (var errorType in err.response.data) {
+            alert("Error: " + err.response.data[errorType]);
+          }
+        }
+      });
   };
-render() {
+  render() {
     const { errors } = this.state;
-return (
+    return (
       <div className="container">
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
@@ -68,10 +76,13 @@ return (
                   name="email"
                   type="email"
                   placeholder="Email"
-                  className={classnames("", {
-                    invalid: this.state.errors.email || errors.emailnotfound
-                  })}
-                  class="form-control"
+                  className={classnames(
+                    "",
+                    {
+                      invalid: this.state.errors.email || errors.emailnotfound,
+                    },
+                    "form-control"
+                  )}
                 />
                 <span className="red-text">
                   {this.state.errors.email}
@@ -85,10 +96,13 @@ return (
                   name="password"
                   type="password"
                   placeholder="Password"
-                  className={classnames("", {
-                    invalid: errors.password || errors.passwordincorrect
-                  })}
-                  class="form-control"
+                  className={classnames(
+                    "",
+                    {
+                      invalid: errors.password || errors.passwordincorrect,
+                    },
+                    "form-control"
+                  )}
                 />
                 <span className="red-text">
                   {errors.password}
@@ -101,7 +115,7 @@ return (
                     width: "150px",
                     borderRadius: "3px",
                     letterSpacing: "1.5px",
-                    marginTop: "1rem"
+                    marginTop: "1rem",
                   }}
                   type="submit"
                   className="btn btn-primary btn-block mb-4"
@@ -117,8 +131,4 @@ return (
   }
 }
 
-export default (props) => (
-  <Login
-  {...props}
-  navigate={useNavigate()}
-/>);
+export default (props) => <Login {...props} navigate={useNavigate()} />;

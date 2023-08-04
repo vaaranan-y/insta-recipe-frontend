@@ -97,3 +97,52 @@ p {
   font-size: 1em;
   padding: 10px 0 10px 0;
 }
+
+
+.title-logo {
+  font-size: 72px;
+  background: -webkit-linear-gradient(45deg, rgb(2, 90, 161), rgb(7, 228, 107));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-div{
+  background-image: linear-gradient(90deg, #020024 0%, #090979 35%, #00d4ff 100%);
+  padding: '10px';
+  text-align: 'center';
+  position: 'fixed';
+  bottom: 0;
+  left: 0;
+  width: '100%';
+}
+
+.app-style {
+  background-color: #020024;
+}
+
+.landing-panel{
+  border: 5px solid #FAF9F6;
+  background-color: black;
+  padding: 50px 0px 50px 0px;
+  color: #FAF9F6;
+  position: relative;
+  border-radius: 5%;
+}
+
+.card {
+  background-color: black !important;
+}
+
+.border-secondary {
+  border-color: black !important;
+}
+
+.login-btn {
+  color: black;
+  background-color: #FAF9F6;
+}
+
+.register-btn {
+  color: black;
+  background-color: #FAF9F6;
+}

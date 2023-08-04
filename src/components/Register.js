@@ -39,16 +39,18 @@ const newUser = {
     };
   
 // console.log(newUser);
-axios.post("https://insta-recipe-blog-app.herokuapp.com/api/users/register",newUser).then(res =>{
-  console.log("new user created");
-  this.props.navigate("/login");
-}).catch(err => {
-  console.log(err.response);
-  for (var errorType in err.response.data) {
+axios
+  .post("http://localhost:8082/api/users/register", newUser)
+  .then((res) => {
+    console.log("new user created");
+    this.props.navigate("/login");
+  })
+  .catch((err) => {
+    console.log(err.response);
+    for (var errorType in err.response.data) {
       alert("Error: " + err.response.data[errorType]);
-  }
-  
-})
+    }
+  });
   };
   
   render(){

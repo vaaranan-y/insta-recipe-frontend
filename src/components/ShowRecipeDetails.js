@@ -19,7 +19,7 @@ class ShowRecipeDetails extends Component {
     
     const { id } = this.props.params;
     axios
-      .get('https://insta-recipe-blog-app.herokuapp.com/api/'+id+'?token='+this.props.location.state.token.token)
+      .get('http://localhost:8082/api/'+id+'?token='+this.props.location.state.token.token)
       .then(res => {
         this.setState({
           recipe: res.data,
@@ -35,7 +35,7 @@ class ShowRecipeDetails extends Component {
 
   onDeleteClick (id) {
     axios
-      .delete('https://insta-recipe-blog-app.herokuapp.com/api/'+id)
+      .delete('http://localhost:8082/api/'+id)
       .then(res => {
         alert("Recipe Deleted");
         // this.props.history.push("/show-recipes");
