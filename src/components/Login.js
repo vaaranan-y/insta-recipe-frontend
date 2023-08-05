@@ -53,78 +53,97 @@ class Login extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="container">
-        <div style={{ marginTop: "4rem" }} className="row">
-          <div className="col s8 offset-s2">
-            <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> Back to
-              home
+      <div
+        style={{
+          backgroundColor: "black",
+          height: "90vh",
+          textAlign: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div style={{ paddingTop: "2%" }}>
+          <Link
+            to="/"
+            className="btn-flat waves-effect"
+            style={{ verticalAlign: "middle" }}
+          >
+            <i
+              className="material-icons left"
+              style={{ verticalAlign: "middle" }}
+            >
+              keyboard_backspace
+            </i>
+            Go Back
+          </Link>
+        </div>
+
+        <div className={"login-panel"}>
+          <h4 className="general-text">
+            <b>Login Below</b>
+          </h4>
+          <p style={{ color: "#FAF9F6" }}>
+            Don't have an account?{" "}
+            <Link style={{ color: "#FAF9F6" }} to="/register">
+              <b style={{ fontWeight: 700 }}>Register</b>
             </Link>
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-              <h4>
-                <b>Login</b> below
-              </h4>
-              <p className="grey-text text-darken-1">
-                Don't have an account? <Link to="/register">Register</Link>
-              </p>
+          </p>
+
+          <form noValidate onSubmit={this.onSubmit}>
+            <div className="form-outline mb-4">
+              <input
+                onChange={this.onChange}
+                error={this.state.errors.email}
+                name="email"
+                type="email"
+                placeholder="Email"
+                className={classnames(
+                  "",
+                  {
+                    invalid: this.state.errors.email || errors.emailnotfound,
+                  },
+                  "form-control"
+                )}
+              />
+              <span className="red-text">
+                {this.state.errors.email}
+                {this.state.errors.emailnotfound}
+              </span>
             </div>
-            <form noValidate onSubmit={this.onSubmit}>
-              <div className="form-outline mb-4">
-                <input
-                  onChange={this.onChange}
-                  error={this.state.errors.email}
-                  name="email"
-                  type="email"
-                  placeholder="Email"
-                  className={classnames(
-                    "",
-                    {
-                      invalid: this.state.errors.email || errors.emailnotfound,
-                    },
-                    "form-control"
-                  )}
-                />
-                <span className="red-text">
-                  {this.state.errors.email}
-                  {this.state.errors.emailnotfound}
-                </span>
-              </div>
-              <div className="form-outline mb-4">
-                <input
-                  onChange={this.onChange}
-                  error={this.state.errors.password}
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  className={classnames(
-                    "",
-                    {
-                      invalid: errors.password || errors.passwordincorrect,
-                    },
-                    "form-control"
-                  )}
-                />
-                <span className="red-text">
-                  {errors.password}
-                  {errors.passwordincorrect}
-                </span>
-              </div>
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                <button
-                  style={{
-                    width: "150px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
-                    marginTop: "1rem",
-                  }}
-                  type="submit"
-                  className="btn btn-primary btn-block mb-4"
-                >
-                  Login
-                </button>
-              </div>
-            </form>
-          </div>
+            <div className="form-outline mb-4">
+              <input
+                onChange={this.onChange}
+                error={this.state.errors.password}
+                name="password"
+                type="password"
+                placeholder="Password"
+                className={classnames(
+                  "",
+                  {
+                    invalid: errors.password || errors.passwordincorrect,
+                  },
+                  "form-control"
+                )}
+              />
+              <span className="red-text">
+                {errors.password}
+                {errors.passwordincorrect}
+              </span>
+            </div>
+            <div
+              style={{
+                width: "35%",
+              }}
+              className="login-button"
+            >
+              <button
+                style={{ width: "100%", margin: "auto 0" }}
+                type="submit"
+                className="btn btn-primary btn-block mb-4"
+              >
+                Login
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     );

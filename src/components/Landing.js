@@ -27,13 +27,13 @@ class Landing extends Component {
               <div className="landing-panel">
                 <h5 className="card-title">Join Today!</h5>
                 <p className="card-text">Start sharing your recipes now!</p>
-                <Link to="/register" className="btn login-btn">
+                <Link to="/register" className="btn btn-success">
                   Register
                 </Link>
                 <br />
                 <br />
                 <p className="card-text">Or login with your email!</p>
-                <Link to="/login" className="btn register-btn">
+                <Link to="/login" className="btn btn-inverse btn-success">
                   Login
                 </Link>
                 <br />

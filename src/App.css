@@ -145,4 +145,31 @@ p {
 .register-btn {
   color: black;
   background-color: #FAF9F6;
+  margin: 0 auto;
+}
+
+.login-panel {
+  text-align: center;
+  width: 35%;
+  height: 75%;
+  border: 5px solid #FAF9F6;
+  background-color: black;
+  padding: 50px 20px 50px 20px;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 5%;
+  border: 5px solid #FAF9F6;
+  margin-top: 2%;
+}
+
+.login-button{
+  margin: 0 auto;
+  margin-top: 20%;
+}
+
+.general-text {
+  background: -webkit-linear-gradient(45deg, rgb(2, 90, 161), rgb(7, 228, 107));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 30px;
 }
