@@ -30,11 +30,9 @@ class App extends Component {
           <div style={{ height: "10vh" }} className="footer-div">
             <p
               style={{
-                margin: 0,
                 textAlign: "center",
                 color: "#FDDFEF",
                 fontSize: "100%",
-                padding: "1%",
               }}
             >
               {copyrightSymbol} {currentYear} Insta Recipe. All rights reserved.
