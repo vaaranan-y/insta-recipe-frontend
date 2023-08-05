@@ -33,6 +33,8 @@ class App extends Component {
                 textAlign: "center",
                 color: "#FDDFEF",
                 fontSize: "100%",
+                marginTop: "3%",
+                paddingTop: "1%",
               }}
             >
               {copyrightSymbol} {currentYear} Insta Recipe. All rights reserved.
