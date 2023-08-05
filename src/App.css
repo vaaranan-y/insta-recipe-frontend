@@ -117,7 +117,7 @@ p {
 }
 
 .app-style {
-  background-color: #020024;
+  background-color: black;
 }
 
 .landing-panel{
@@ -130,7 +130,7 @@ p {
 }
 
 .card {
-  background-color: black !important;
+  background-color: #03003e !important;
 }
 
 .border-secondary {

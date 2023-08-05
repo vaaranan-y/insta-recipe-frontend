@@ -62,7 +62,15 @@ class ShowRecipeList extends Component {
           <div className="row">
             <div className="col-md-12">
               <br />
-              <h2 className="text-center title-logo">Insta Recipe</h2>
+              <h2
+                className="text-center title-logo"
+                style={{
+                  fontFamily: "unset",
+                  fontWeight: 700,
+                }}
+              >
+                Insta Recipe
+              </h2>
             </div>
 
             <div className="col-md-12">

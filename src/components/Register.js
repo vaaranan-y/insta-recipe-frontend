@@ -81,7 +81,7 @@ class Register extends Component {
           </div>
           <div className={"login-panel"}>
             <h4 className="general-text">
-              <b>Register</b> below
+              <b>Register</b> Now
             </h4>
             <p style={{ color: "#FAF9F6" }}>
               Already have an account?{" "}
